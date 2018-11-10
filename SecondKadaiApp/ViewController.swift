@@ -8,18 +8,50 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate{
 
+    @IBOutlet weak var textfield: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+    let textfield = UITextField()
+        
+        textfield.delegate = self
+        
+        textfield.placeholder = "テキストを入力"
+        
+        textfield.clearButtonMode = .always
+        
+        // 改行ボタンの種類を変更
+        textfield.returnKeyType = .done
+        
+        self.view.addSubview(textfield)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func textFieldShouldReturn(_ textfield: UITextField) -> Bool {
+        
+        // キーボードを隠す
+        textfield.resignFirstResponder()
+        return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let resultViewController:ResultViewController = segue.destination as! ResultViewController
+    
+        resultViewController.result = "textfield"
+    }
 
-
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+    }
+    
 }
 
