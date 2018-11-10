@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         
         let resultViewController:ResultViewController = segue.destination as! ResultViewController
     
-        resultViewController.result = "textfield"
+        resultViewController.result = textfield.text!
     }
 
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
